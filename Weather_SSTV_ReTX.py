@@ -1,11 +1,8 @@
 from pysstv.color import Robot36
 
-from PIL import Image, ImageEnhance
+from PIL import Image
 import urllib.request, os, sched, sys, struct
 
-
-#img = Image.open("320x256rgb.png")
-#sstv = MartinM1(img, 44100, 16)
 
 # Define a functions
   
