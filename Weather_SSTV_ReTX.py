@@ -1,6 +1,6 @@
 from pysstv.color import Robot36
 
-from PIL import Image
+from PIL import Image, ImageEnhance
 import urllib.request, os, sched, sys, struct
 
 
@@ -60,6 +60,16 @@ def build_sstv():
     with open("time.txt", "r") as f:
         time = f.read()
         f.close()   
+    #Watermark 
+    
+    
+    background = Image.open(time + ".jpg")
+    foreground = Image.open("overlay.png")
+
+    background.paste(foreground, (0, 0), foreground)
+    
+    background.save(time + ".jpg")
+
     img = Image.open(time + ".jpg")
     sstv = Robot36(img, 44100, 16)
     sstv.write_wav(time + ".wav")
