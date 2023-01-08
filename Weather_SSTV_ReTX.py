@@ -1,7 +1,8 @@
-import pysstv
+#import pysstv
+
 from PIL import Image
-import urllib
-import sched, time
+import urllib.request, os, sched
+
 
 #img = Image.open("320x256rgb.png")
 #sstv = MartinM1(img, 44100, 16)
@@ -29,7 +30,7 @@ def scheduler_setup():
 
     # Setup scheduler
     s = sched.scheduler(time.time, time.sleep)
-    s.enterabs(time, 1, # FUNCTION NAME HERE # , (s,))
+    s.enterabs(time, 1, null_debug, (s,))
     s.run()
 
 
@@ -47,14 +48,22 @@ def get_image():
     urllib.request.urlretrieve("https://kiwiweather.com/goes/himawari_9_fd_IR-sanchez.jpg", "image.jpg")
     # Crop image and resize it to 320x240 
     img = Image.open("image.jpg")
-    img = img.crop((1058, 1521, 1870, 2179))
+    img = img.crop((1086, 1561, 1750, 2059))
     img = img.resize((320, 240))
-    img.save(time + "jpg")
+    #Save image as unix time of when it needs to be transmitted
+    img.save(time + ".jpg")
+    os.remove("image.jpg")
 
-  
+def build_sstv():
+        
+
+def null_debug():
+    print("")
 
 
-# Main 
+
+
+# Main Program 
 
 #scheduler_setup()
 get_image()
