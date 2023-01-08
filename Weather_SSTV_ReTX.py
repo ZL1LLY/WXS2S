@@ -1,6 +1,8 @@
 from pysstv.color import Robot36
 
 from PIL import Image
+from pydub import AudioSegment
+from pydub.playback import play
 import urllib.request, os, sched, sys, struct
 
 
@@ -52,6 +54,7 @@ def get_image():
     os.remove("image.jpg")
     build_sstv()
 
+
 def build_sstv():
     # Get time from file 
     with open("time.txt", "r") as f:
@@ -70,6 +73,19 @@ def build_sstv():
     img = Image.open(time + ".jpg")
     sstv = Robot36(img, 44100, 16)
     sstv.write_wav(time + ".wav")
+    #tx_sstv()
+
+
+def tx_sstv():
+    # Get time from file 
+    with open("time.txt", "r") as f:
+        time = f.read()
+        f.close()   
+
+    sstv_wav = AudioSegment.from_wav(time + ".wav")
+    play(sstv_wav)
+    increment_time()
+    
 
 
 
