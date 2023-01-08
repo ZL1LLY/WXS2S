@@ -1,7 +1,7 @@
-#import pysstv
+from pysstv.color import Robot36
 
 from PIL import Image
-import urllib.request, os, sched
+import urllib.request, os, sched, sys, struct
 
 
 #img = Image.open("320x256rgb.png")
@@ -30,7 +30,7 @@ def scheduler_setup():
 
     # Setup scheduler
     s = sched.scheduler(time.time, time.sleep)
-    s.enterabs(time, 1, null_debug, (s,))
+    s.enterabs(time, 1, get_image(), (s,))
     s.run()
 
 
@@ -53,13 +53,16 @@ def get_image():
     #Save image as unix time of when it needs to be transmitted
     img.save(time + ".jpg")
     os.remove("image.jpg")
+    build_sstv()
 
 def build_sstv():
-        
-
-def null_debug():
-    print("")
-
+    # Get time from file 
+    with open("time.txt", "r") as f:
+        time = f.read()
+        f.close()   
+    img = Image.open(time + ".jpg")
+    sstv = Robot36(img, 44100, 16)
+    sstv.write_wav(time + ".wav")
 
 
 
