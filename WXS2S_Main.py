@@ -16,7 +16,7 @@ from pydub import AudioSegment
 # <<< Use playsound version 1.2.2 >>>
 from playsound import playsound
 
-import urllib.request, os, sched, sys, struct, time 
+import urllib.request, os, time 
 import shutil
 
 
