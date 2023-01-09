@@ -4,7 +4,10 @@ from pysstv.color import Robot36
 
 from PIL import Image
 from pydub import AudioSegment
-from pydub.playback import play
+
+# <<< Use playsound version 1.2.2 >>>
+from playsound import playsound
+
 import urllib.request, os, sched, sys, struct, time 
 import shutil
 
@@ -121,8 +124,7 @@ def tx_sstv():
         go_time = f.read()
         f.close()   
 
-    #sstv_wav = AudioSegment.from_wav(go_time + ".wav")
-    #play(sstv_wav)
+    playsound(go_time + ".wav")
     increment_time()
     scheduler_setup()
     
@@ -132,6 +134,7 @@ def tx_sstv():
 # <<< Main Program >>>
 
 scheduler_setup()
+
 
 
 
