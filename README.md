@@ -1,4 +1,4 @@
-# WX-Sat-2-SSTV
-## Or WXS2S for short
+# WXS2S (WX-Sat-2-SSTV)
+
 
 
