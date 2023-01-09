@@ -10,7 +10,7 @@ By default the program is set up to fetch images from KiwiWether.com (Thanks to 
 ## Installation and Setup 
 1. Download the latest release from the [releases page](https://github.com/ZL1LCD/WXS2S/releases) **Do not git clone the repository**.
 2. Unzip the file to a folder of your choice. 
-3. Set a UNIX timestamp in the time.txt file to when you next want it to transmit an image. 
+3. Set a UNIX timestamp in the time.txt file to when you next want it to transmit an image. **The program will automatically increment this after initially being set* 
 4. Replace overlay.png and Header.wav with your own files. **Do not transmit on the air with the default files!** 
 5. Run pip install -r requirements.txt to install the requirements
 6. Run WXS2S_Main.py
@@ -18,6 +18,9 @@ By default the program is set up to fetch images from KiwiWether.com (Thanks to 
 ## Common Errors 
 - **Time not set correctly**,  The UNIX timestamp is not set correctly please check the time.txt file.
 - **Something went wrong while trying to fetch the image from the internet...**, The program was unable to fetch the image from the internet. Check your internet connection and try again, an error message will be transmitted instead of an image.
+
+## If The Program Stops
+If the program stops (or your computer restarts) you can restart the program. The program sound continue on and transmit on the time that is in the time.txt file, if this time has passed the program will produce a "Time not set correctly" error if so please manually update the time.
 
 ## To Do
 - [ ] Add support for adding the time the image was taken to the overlay. 
