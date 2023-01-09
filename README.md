@@ -8,7 +8,7 @@ By default the program is set up to fetch images from KiwiWether.com (Thanks to 
 **WXS2S is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Images produced SHOULD NOT be used for meteorological use.**
 
 ## Installation and Setup 
-1. Download the latest release from the [releases page](https://github.com/ZL1LCD/WXS2S/releases) **Do not git clone the repository**.
+1. Download the latest release from the [releases page](https://github.com/ZL1LCD/WXS2S/releases), **Do not git clone the repository**.
 2. Unzip the file to a folder of your choice. 
 3. Set a UNIX timestamp in the time.txt file to when you next want it to transmit an image. **The program will automatically increment this after initially being set* 
 4. Replace overlay.png and Header.wav with your own files. **Do not transmit on the air with the default files!** 
