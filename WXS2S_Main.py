@@ -1,4 +1,5 @@
 """
+WXS2S (WX-Sat-2-SSTV) v1.0.2
 Copyright © Lilly Chapman 2023
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3 or later of the License.
@@ -142,7 +143,7 @@ def tx_sstv():
 # <<< Main Program >>>
 print("\n")
 print("WXS2S (WX-Sat-2-SSTV)")
-print("Version 1.0.0\n")
+print("Version 1.0.2\n")
 print("Copyright © Lilly Chapman 2023")
 print("WXS2S is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \nSee the GNU General Public License for more details.\n")
 scheduler_setup()
