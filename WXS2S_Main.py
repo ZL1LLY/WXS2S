@@ -43,8 +43,8 @@ def scheduler_setup():
         print("No >4h old files found...")
     
     # <<< Debug >>>
-    print(go_time)
-    print((go_time - int(time.time())))
+    #print(go_time)
+    #print((go_time - int(time.time())))
     # <<< Debug >>>
 
     time.sleep((go_time - int(time.time())))
@@ -83,7 +83,7 @@ def crop_image():
     img = img.resize((320, 240))
     #Save image as unix time of when it needs to be transmitted
     img.save(go_time + ".jpg")
-    #os.remove("image.jpg")
+    os.remove("image.jpg")
     build_sstv()
 
 
@@ -111,6 +111,7 @@ def build_sstv():
     
     combined_sounds = header_sound + sstv_sound
     combined_sounds.export((go_time + ".wav"), format="wav")
+    print("Generation successful!")
     tx_sstv()
 
 
