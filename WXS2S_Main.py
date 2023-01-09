@@ -10,7 +10,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 from pysstv.color import Robot36
 
-from PIL import Image
+from PIL import Image, ImageDraw
 from pydub import AudioSegment
 
 # <<< Use playsound version 1.2.2 >>>
@@ -141,7 +141,8 @@ def tx_sstv():
 
 # <<< Main Program >>>
 print("\n")
-print("WXS2S (WX-Sat-2-SSTV)\n")
+print("WXS2S (WX-Sat-2-SSTV)")
+print("Version 1.0.0\n")
 print("Copyright © Lilly Chapman 2023")
 print("WXS2S is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \nSee the GNU General Public License for more details.\n")
 scheduler_setup()
