@@ -12,6 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 from pysstv.color import Robot36
 
 from PIL import Image, ImageDraw
+from PIL import ExifTags
 from pydub import AudioSegment
 
 # <<< Use playsound version 1.2.2 >>>
@@ -20,6 +21,7 @@ from playsound import playsound
 import urllib.request, os, time 
 import shutil
 
+img_title = "Error something went wrong with getting the metadata..."
 
 # <<< Define a functions >>>
   
@@ -73,14 +75,14 @@ def get_image():
         f.close()   
     
     # Download image from server
-    try:
+    #try:
         urllib.request.urlretrieve("https://kiwiweather.com/goes/himawari_9_fd_IR-sanchez.jpg", "image.jpg")
         crop_image()
 
-    except Exception:
-        print("Something went wrong while trying to fetch the image from the internet...")
-        shutil.copy("error.jpg", go_time + ".jpg")
-        build_sstv()
+    #except Exception:
+    #    print("Something went wrong while trying to fetch the image from the internet...")
+    #    shutil.copy("error.jpg", go_time + ".jpg")
+    #    build_sstv()
 
 
 def crop_image():
@@ -88,7 +90,20 @@ def crop_image():
     with open("time.txt", "r") as f:
         go_time = f.read()
         f.close()  
+    infoDict = {} #Creating the dict to get the metadata tags
+    exifToolPath = 'exif.exe' #for Windows user have to specify the Exif tool exe path for metadata extraction. 
+    imgPath = 'image.jpg'
 
+    ''' use Exif tool to get the metadata '''
+    process = subprocess.Popen([exifToolPath,imgPath],stdout=subprocess.PIPE, stderr=subprocess.STDOUT,universal_newlines=True) 
+    ''' get the tags in dict '''
+    for tag in process.stdout:
+        line = tag.strip().split(':')
+        infoDict[line[0].strip()] = line[-1].strip()
+
+    for k,v in infoDict.items():
+        print(k,':', v)
+    
     # Crop image and resize it to 320x240 
     img = Image.open("image.jpg")
     img = img.crop((1086, 1561, 1750, 2059))
@@ -146,8 +161,8 @@ print("WXS2S (WX-Sat-2-SSTV)")
 print("Development Version! You need to remove these files and download the source form the releases tab!\n")
 print("Copyright © Lilly Chapman 2023")
 print("WXS2S is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \nSee the GNU General Public License for more details.\n")
-scheduler_setup()
-
+#scheduler_setup()
+get_image()
 
 
 
